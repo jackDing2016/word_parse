@@ -1,0 +1,53 @@
+8
+
+PBAENOTANDA.
+
+11-17'
+
+[ 5~ 6
+
+designed littera y,
+
+erit dy-Xd seu g-2, ita ut hie omnino ratio
+differentialium dy : dx proponatur, quae est = X, indeque ent y -
+J Xdx;
+hoc autem integrale non tarn ex ipso differentiali Xdx, quod utique est -
+quam ex eius ratione ad das inveniri est censendum. Caeterum hoc signumj
+vocabulo nwmoe efferri solet, quod ex conceptu parum idoneo, quo integrate
+tanquam summa omnium differentialium spectatur, est natum; neque maiore
+iure admitti potest, quam vulgo lineae ex punctis constare concipi solent.
+
+SCHOLION 2
+
+Deinde calculus
+
+12. At calculus integralis multo latius quam ad huiusmodi formulas inte-
+grandas patet, quae unicam variabilem complectuntur. Quemadmodum enim
+hie functio unius variabilis x ex data differentials forma investigator, ita
+calculus integralis quoque extendi debet ad functiones duarum pluriumve
+variabilium investigandas, cum relatio quaedam differentialium fuerit propo-
+integralis non solum ad differentialia primi ordinis
+sita.
+adstringitur, sed etiam praecepta tradere debet, quorum ope functiones tarn
+unius quam duarum pluriumve variabilium investigari queant, cum relatio
+quaedam differentialium secundi altiorisve cuiusdam ordinis fuerit data. Atque
+hanc ob rem definitionem calculi integralis ita instruximus, ut omnes huius-
+modi investigationes in se complecteretur; differentialia enim cuiusque ordinis
+intelligi debent et voce relationis, quae inter ea proponatur, sum usus, ut
+latius pateret voce rationis, quae tantum duorum differentialium comparatio-
+nem indicare videatur. Ex his ergo divisionem calculi integralis constituere
+poterimus.
+
+DBFINITIO 3
+
+13.
+
+Calculus integralis dividitur in duos paries, quarum prior tradit metho-
+dum functionem unius varidbilis inveniendi ex data quadam relatione inter eius
+differentialia tarn primi quam altiorum ordinum.
+
+Pars autem altera methodum continet functionem duarum pluriumve varia-
+Ulium inveniendi, cum relatio inter eius differentialia sive primi sive altioris cuius-
+dam gradus fuerit proposita.
+
+
