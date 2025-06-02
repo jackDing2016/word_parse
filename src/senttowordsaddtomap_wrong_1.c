@@ -26,59 +26,31 @@ uint64_t word_hash(const void *item, uint64_t seed0, uint64_t seed1) {
 }
 
 
-int main()
+int main(){
 
 	char *stringlist[100];
+
+	int stringListIndex = 0;
 
 	struct hashmap *map = hashmap_new(sizeof(struct word), 0, 0, 0, 
                                      word_hash, word_compare, NULL, NULL);
 
-	char w[100];
 
 	char *sentence = "tom make his first full score at the age of twenty";
 
-	int currentIndex = 0;
-
-	int stringListIndex = 0;
 
 	while(*sentence != '\0') {
 
 		if ( *sentence == ' ' ) {
-			char *wordb;
-			int index = 0;
-			while ( w[index] != '\0' ) {
-				printf("%c", w[index]);
-//				*wordb = w[ index ];
-				index++;
-//				wordb++;
-				printf("5");
-			}
-			wordb = w;
-			printf("\n");
 
-			strcpy( stringlist[ stringListIndex ], w);
-
-
-//			hashmap_set(map, &(struct word){ .name= wordb, .count=10 });
-			hashmap_set(map, &(struct word){ .name= str, .count=10 });
+			hashmap_set(map, &(struct word){ .name= stringlist[ stringListIndex ], .count=10 });
 			stringListIndex++;
 
-
-//			while ( w[ index ] != '\0' ) {
-//				*( wordb++ ) = word[ index++  ];
-//				printf("2");
-//			}
-
-
-			currentIndex = 0;
-			for(int i = 0; i < 100; i++){
-				w[i] = '\0';
-				printf("1");
-			}
 			sentence++;
 		}
 		else {
-			w[ currentIndex++ ] = *(sentence++);
+			stringlist[ stringListIndex ] = *(sentence++);
+//			stringlist[ stringListIndex ]++;
 
 			/*
 			if ( *sentence == '\0' ){
