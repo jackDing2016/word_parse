@@ -41,6 +41,7 @@ int main(){
 		
 			p = alloc( 100 );	
 
+//			char p[ 100 ];
 			strcpy( p, word );
 			wordptr[ wordIndex++ ] = p; 
 

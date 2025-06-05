@@ -6,6 +6,8 @@ void printword(int s, int e, char *source);
 
 void getword( char str[], int s, int e, char *source );
 
+void mystrcpy( char *dp, char *sp );
+
 char *alloc( int n );
 
 char *wordptr[ 100 ];
@@ -59,13 +61,13 @@ int main(){
 
 	while ( ( ch = *(currentp++ ) ) != '\0' ) {
 		if ( ch == ' ' ) {
-		//	printword( startIndex, endIndex, sentence );
 			getword( word, startIndex, endIndex, sentence );
 			printf( "word is %s\n", word );
 		
 			p = alloc( 100 );	
 
-			strcpy( p, word );
+		//	strcpy( p, word );
+			mystrcpy( p, word );
 			wordptr[ wordIndex++ ] = p; 
 
 			startIndex = endIndex + 1;
@@ -126,3 +128,11 @@ char *alloc( int n ) {
 	return allocp - n;
 }
 
+void mystrcpy( char *dp, char *sp ) {
+
+	while ( ( *dp  = *sp ) != '\0'  ) {
+		dp++;
+		sp++;
+	}
+
+}
