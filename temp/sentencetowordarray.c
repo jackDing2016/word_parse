@@ -14,7 +14,7 @@ struct word {
 	int count;
 };
 
-
+int isexist( struct word *wp[], char *str ); 
 void printword(int s, int e, char *source);
 
 void getword( char str[], int s, int e, char *source );
@@ -24,12 +24,12 @@ char *popword( int s, int e, char *source );
 
 char *alloc( int n );
 
-
-struct word *wordptr[ 100 ];
-
+struct word *wordptr[ 10 ];
 
 int isequal( char *a, char *b );
 struct word *getwordbyname( struct word *wp[], char *str ); 
+
+int sizeofarr( struct word *wp[] );
 
 int main(){
 
@@ -48,7 +48,7 @@ int main(){
 
 	int currentIndex = 0;
 
-	char word[50];
+//	char word[50];
 
 	struct word *pwo;
 
@@ -56,22 +56,35 @@ int main(){
 
 	while ( ( ch = *(currentp++ ) ) != '\0' ) {
 		if ( ch == ' ' ) {
-			getword( word, startIndex, endIndex, sentence );
-		
-			pwo = ( struct word * ) malloc( sizeof( struct word ) );	
 
-			char *c = alloc( 100 );
+			char *aword = popword( startIndex, endIndex, sentence );
 
-			strcpy( c, word );
+			printf("a word is %s\n", aword);
 
-			pwo -> name = c;
-			pwo -> count = 1;
+			/* if "aword" that has already exist in array, increase the 
+			 * count of it
+			 *
+			 * if not insert the new word, and the count is 1
+			*/
 
-			wordptr[ wordIndex ] = pwo;
+//			int ishaveword = isexist( wordptr, aword );
+			// not exist
+//			if (ishaveword == 2) {
+				pwo = ( struct word * ) malloc( sizeof( struct word ) );
+				pwo -> name = aword;
+				pwo -> count = 1;
+				wordptr[ wordIndex ] = pwo;
+				wordIndex++;
+				startIndex = endIndex + 1;
 
-			wordIndex++;
+//				int arraysize = sizeofarr( wordptr );
+				int arraysize = sizeof( wordptr );
+				printf( "after add word size of arra is %d\n", arraysize );
 
-			startIndex = endIndex + 1;
+//			}
+//			else if ( ishaveword == 1 ) {
+				
+//			}
 		}
 		endIndex++;
 	}
@@ -100,7 +113,13 @@ void getword( char str[], int s, int e, char *source ) {
 }
 
 char *popword( int s, int e, char *source ) {
-	char *res 
+	char *res = alloc( 100 );
+	for( int i = s; i < e; i++ ) {
+	//	printf("%c", source[ i ]);
+		res[ i - s ] = source[ i ];
+	}
+	return res;
+
 }
 
 void printword( int s, int e, char *source ) {
@@ -132,17 +151,45 @@ void iteratewordptr( struct word *wp[] ) {
 }
 
 struct word *getwordbyname( struct word *wp[], char *str ) {
+
 	
+
 	for ( int i = 0; i < 5; i++ ) {
 
 		struct word *w = wp[ i ];
 
 		printf( "%s: %d\n", w -> name, w -> count );
 
+
+
 		if ( isequal ( w -> name, str  ) == 1) {
 			 return w;
 		}
 
+	}
+
+	/**
+	 * if not exists return a null string which is a solution for temporary
+	 */
+//	struct word *nullword = ( struct word * ) malloc( sizeof( struct word ) );
+//	nullword -> name = "null" ;
+//	return nullword;
+}
+
+// 1-exist 2-not exist 
+int isexist( struct word *wp[], char *str ) {
+
+	printf( "aa\n" );	
+	struct word *x = getwordbyname( wp, str );
+
+	printf( "bb\n" );
+	int aa = isequal( x -> name, "null" );
+
+	if ( aa == 1 ) {
+		return 2;
+	}	
+	else {
+		return 1;
 	}
 
 }
@@ -162,7 +209,27 @@ int isequal( char *a, char *b ) {
 		a++;
 		b++;
 		
-	} while ( (*a != '\0') || ( *b != '\0') );
+	} while ( (*a != '\0') && ( *b != '\0') );
 	return 1;
 
+}
+
+/*
+
+int sizeofarr( struct word *wp[] ) {
+	int res = 0;
+
+	struct word *p = *wp;
+
+	while( p++ ){
+		res++;
+	}
+
+	return res;
+
+}
+*/
+
+int sizeofarr( struct word *wp[] ){
+	return sizeof( wp ) / sizeof( wp[0] );
 }

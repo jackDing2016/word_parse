@@ -20,12 +20,15 @@ int main(){
     	 }
 
 	// iterate data array	
+/*
 	char c;
 	while ( ( c = *p) != '\0' ) {
 		p++;
 		printf( "%c", c );
 	}
 	printf( "%s", data );
+
+	*/
 }
 
 
