@@ -108,10 +108,19 @@ int main(int argc, char **argv) {
     }
 
   hti it = ht_iterator(counts);
+		
+    char *minnum = argv[2];
+    char *maxnum = argv[3];
+
+   
+   	
+    printf( "min num is %s\n ", minnum );
+	
     while (ht_next(&it)) {
 	    int numa = *(int*)it.value;
-	    if(numa < 20 && numa > 10 )
-    		printf( "%s %d\n", it.key, numa );
+	    if(numa < atoi( maxnum ) && numa > atoi( minnum ) )
+ //	  if(numa < 20 && numa > 10)
+		printf( "%s %d\n", it.key, numa );
     }
 
 
