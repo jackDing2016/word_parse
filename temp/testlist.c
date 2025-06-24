@@ -1,50 +1,46 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "testlist.h"
 
 struct arraylist {
 	char *data[100];
-	int size;
+	int *nextpositiontoadd;
 }; 
 
 struct arraylist *createarraylist() {
-	
 		
+	struct arraylist *al = malloc( sizeof( struct arraylist ) );
 
 	for( int i = 0; i < 10; i++ ) {
-		arr[ i ] = calloc( 50, sizeof( char ) );
+		al -> data[ i ] = calloc( 50, sizeof( char ) );
 	}
-	printf( "create array list function \n" );	
+	
+	al -> nextpositiontoadd = malloc( sizeof( int ) );
+	*( al -> nextpositiontoadd ) = 0;
+
+	return al;	
 }
 
-
-/*
-
-void addelement( char *arr[], char *value, int currentsize ) {
+void addelement( struct arraylist *arraylist, char *value ) {
 	char c;	
 	int indexinside = 0;
 	while( ( c = *value ) != '\0' ) {
-		*(arr[ currentsize ] + indexinside ) = c;
+		*( arraylist -> data[ *(arraylist -> nextpositiontoadd) ] + indexinside ) = c;
 		value++;
 		indexinside++;
-	}	
+	}
+	*( arraylist -> nextpositiontoadd ) = *( arraylist -> nextpositiontoadd ) + 1;	
 }
 
-*/
-
-/*
-
-void iteratearraylist( char *arr[] ){
+void iteratearraylist( struct arraylist *arraylist ) {
 	for( int i = 0; i < 10; i++ ) {
-		printf( "word is %s\n", arr[ i ] );
+		printf( "word is %s\n", arraylist -> data[ i ] );
 	}
 }
 
-*/
 
-/*
-void size(){
-		
+int *size( struct arraylist *arraylist ){
+	return arraylist -> nextpositiontoadd;		
 }
 
-*/
+

@@ -1,4 +1,4 @@
-extern void createarraylist();
-// extern void addelement( char *arr[], char *value, int currentsize );
-// extern int size();
-// extern void iterate();
+extern struct arraylist *createarraylist();
+extern void addelement( struct arraylist *arraylist, char *value);
+extern int *size( struct arraylist *arraylist );
+extern void iteratearraylist( struct arraylist *arraylist );
