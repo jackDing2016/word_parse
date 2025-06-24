@@ -10,6 +10,11 @@ int main() {
 	addelement( al, "fasinating" );	
 	addelement( al, "change" );	
 	addelement( al, "large" );
+	addelement( al, "boy" );	
+	addelement( al, "smile" );	
+	addelement( al, "function" );	
+	addelement( al, "nothing" );	
+	addelement( al, "people" );	
 
 	iteratearraylist( al );
 
