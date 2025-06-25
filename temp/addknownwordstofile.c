@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "testlist.h"
+
 int main( int argc, char *argv[] ){
 	
 	// load all words in file to memory	
@@ -20,8 +22,11 @@ int main( int argc, char *argv[] ){
 
 //	char *wordarr =  calloc( 10, 50 );
 	char *word = calloc( 50, sizeof(char) );
-	
 	int wordindex = 0;
+
+	// create array list
+	struct arraylist *al = createarraylist();
+	
 	while( (cc = *contents) != '\0' ) {
 //		wordarr[ wordarrindex ] = cc;
 //		wordarr[ wordarrindex ]++;
@@ -30,6 +35,8 @@ int main( int argc, char *argv[] ){
 		if ( cc == ' ' ) {
 //			wordarrindex++;
 			printf( "word is %s\n", word );
+			// add word
+			addelement( al, word );
 			wordindex = 0;
 			
 		}
@@ -37,6 +44,8 @@ int main( int argc, char *argv[] ){
 		contents++;
 	}	
 
+	// iterate list , just for test
+	iteratearraylist( al );
 	
 /*	
 	for( int i = 0; i < 10; i++ ) {
@@ -49,13 +58,18 @@ int main( int argc, char *argv[] ){
 //	fseek( fp, SEEK_CUR, SEEK_END );
 	char *aword = argv[1];	
 
-	char c;
-	while( c = *aword  ) {
-		putc( c, fp );
-		aword++;
+	// if not contain the word , add it	
+	if( iscontainelement( al, aword ) == false ) {
+		char c;
+		while( c = *aword  ) {
+			putc( c, fp );
+			aword++;
+		}
+		putc( ' ', fp );		
 	}
-	putc( ' ', fp );		
-
+	else {
+		printf( "you have added the word" );
+	}
 }
 
 

@@ -20,4 +20,9 @@ int main() {
 
 	int *sizeofal = size( al );
 	printf( "size of al is %d\n", *sizeofal );
+	
+	char *aword = "good";
+	bool iscon = iscontainelement( al, aword );
+	printf( "iscon value is %d", iscon );
+
 }
