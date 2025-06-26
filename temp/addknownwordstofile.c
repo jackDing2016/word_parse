@@ -20,7 +20,6 @@ int main( int argc, char *argv[] ){
 
 	char cc;
 
-//	char *wordarr =  calloc( 10, 50 );
 	char *word = calloc( 50, sizeof(char) );
 	int wordindex = 0;
 
@@ -28,24 +27,19 @@ int main( int argc, char *argv[] ){
 	struct arraylist *al = createarraylist();
 	
 	while( (cc = *contents) != '\0' ) {
-//		wordarr[ wordarrindex ] = cc;
-//		wordarr[ wordarrindex ]++;
 		*( word + wordindex ) = cc;
 		wordindex++;
 		if ( cc == ' ' ) {
-//			wordarrindex++;
-			printf( "word is %s\n", word );
 			// add word
 			addelement( al, word );
 			wordindex = 0;
 			
 		}
-		printf( "%c\n", cc );
 		contents++;
 	}	
 
 	// iterate list , just for test
-	iteratearraylist( al );
+//	iteratearraylist( al );
 	
 /*	
 	for( int i = 0; i < 10; i++ ) {
@@ -66,9 +60,11 @@ int main( int argc, char *argv[] ){
 			aword++;
 		}
 		putc( ' ', fp );		
+		printf( "you have added the word to file successfully\n." );
+
 	}
 	else {
-		printf( "you have added the word" );
+		printf( "you have added the word\n." );
 	}
 }
 

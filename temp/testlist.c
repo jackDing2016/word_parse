@@ -37,15 +37,13 @@ void addelement( struct arraylist *arraylist, char *value ) {
 	char c;	
 	int indexinside = 0;
 
-//	printf( "availablesize is %d\n", arraylist -> availablesize );
-	printf( "availablesize is %d\n", as );
+//	printf( "availablesize is %d\n", as );
 
 	// perform capcity extension
 	if ( as  < 1 ) {
 		for( int i = 0; i < 10; i++ ) {
 			arraylist -> data[ i + *(arraylist -> nextpositiontoadd ) ] = calloc( 50, sizeof( char ) );
 		}
-	//	*( arraylist -> availablesize ) = 10;
 		*(&as) = 10;
 	}
 	while( ( c = *value ) != '\0' ) {
@@ -54,7 +52,7 @@ void addelement( struct arraylist *arraylist, char *value ) {
 		indexinside++;
 	}
 	*( arraylist -> nextpositiontoadd ) = *( arraylist -> nextpositiontoadd ) + 1;		
-	printf( "elements added successfully\n" );
+//	printf( "elements added successfully\n" );
 //	*( arraylist -> availablesize  ) = *( arraylist -> availablesize  ) - 1; 	
 //	*(&as) = as - 1;
 	*( &( arraylist -> availablesize) ) = as - 1;
