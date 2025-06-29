@@ -29,7 +29,7 @@ int main( int argc, char *argv[] ){
 	while( (cc = *contents) != '\0' ) {
 		*( word + wordindex ) = cc;
 		wordindex++;
-		if ( cc == ' ' ) {
+		if ( cc == '\n' ) {
 			// add word
 			addelement( al, word );
 			wordindex = 0;
@@ -59,12 +59,12 @@ int main( int argc, char *argv[] ){
 			putc( c, fp );
 			aword++;
 		}
-		putc( ' ', fp );		
-		printf( "you have added the word to file successfully\n." );
+		putc( '\n', fp );		
+		printf( "you have added the word to file successfully.\n" );
 
 	}
 	else {
-		printf( "you have added the word\n." );
+		printf( "you have added the word.\n" );
 	}
 }
 
