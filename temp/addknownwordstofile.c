@@ -26,7 +26,7 @@ int main( int argc, char *argv[] ){
 	// create array list
 	struct arraylist *al = createarraylist();
 	
-	while( (cc = *contents) != '\0' ) {
+//	while( (cc = *contents) != '\0' ) {
 		*( word + wordindex ) = cc;
 		wordindex++;
 		if ( cc == '\n' ) {
@@ -35,8 +35,9 @@ int main( int argc, char *argv[] ){
 			wordindex = 0;
 			
 		}
+
 		contents++;
-	}	
+//	}	
 
 	// iterate list , just for test
 //	iteratearraylist( al );

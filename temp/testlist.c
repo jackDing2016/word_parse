@@ -9,8 +9,9 @@ struct arraylist {
 	char *data[100];
 	int *nextpositiontoadd;
 //	int *availablesize;
-	int availablesize;	
-}; 
+	int availablesize;
+};
+
 
 struct arraylist *createarraylist() {
 		
@@ -65,9 +66,10 @@ void iteratearraylist( struct arraylist *arraylist ) {
 	}
 }
 
-int *size( struct arraylist *arraylist ){
-	return arraylist -> nextpositiontoadd;		
+int size( struct arraylist *arraylist ){
+	return *( arraylist -> nextpositiontoadd );		
 }
+
 
 bool iscontainelement( struct arraylist *al, char *val ) {
 	int length = *( al -> nextpositiontoadd );
@@ -82,3 +84,9 @@ bool iscontainelement( struct arraylist *al, char *val ) {
 	}
 	return result; 
 }
+
+
+char *getelement( struct arraylist *al, int index ) {
+	return al -> data[ index ];	
+}
+

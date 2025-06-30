@@ -1,94 +1,160 @@
+// Simple performance test of C hash table set
 
+// See perftest.sh for results
 
+#include "../lib/ht.h"
+
+#include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 #include <string.h>
-#include "../lib/hashmap.h"
 
-struct word {
-    char *name;
-    int count;
-};
-
-int word_compare(const void *a, const void *b, void *udata) {
-    const struct word *ua = a;
-    const struct word *ub = b;
-    return strcmp(ua->name, ub->name);
+void exit_nomem(void) {
+    fprintf(stderr, "out of memory\n");
+    exit(1);
 }
 
-bool word_iter(const void *item, void *udata) {
-    const struct word *word = item;
-    printf("%s (count=%d)\n", word->name, word->count);
-    return true;
-}
+void* found;
 
-uint64_t word_hash(const void *item, uint64_t seed0, uint64_t seed1) {
-    const struct word *word = item;
-    return hashmap_sip(word->name, strlen(word->name), seed0, seed1);
-}
-
-int main() {
-
-	FILE *file = fopen("/home/jack/develop/c/wordparse/test/testdata.txt", "r");
-
-	char c ;	
-	while((c = fgetc(file)) != EOF){
-		printf("%c", c);	
-	}
-
-
-//    struct hashmap *map = hashmap_new(sizeof(struct word), 0, 0, 0, 
-//                                     word_hash, word_compare, NULL, NULL);
-
-//    hashmap_set(map, &(struct word){ .name="quae", .count=10 });
-//    hashmap_set(map, &(struct word){ .name="cuis", .count=8 });
-//    hashmap_set(map, &(struct word){ .name="em", .count=897 });
-
-//    struct word *word; 
- /*   
-    printf("\n-- get some words --\n");
-    word = hashmap_get(map, &(struct word){ .name="quae" });
-    printf("%s word=%d\n", word->name, word->count);
-
-    word = hashmap_get(map, &(struct word){ .name="cuis" });
-    printf("%s word=%d\n", word->name, word->count);
-
-    word = hashmap_get(map, &(struct word){ .name="em" });
-    printf("%s word=%d\n", word->name, word->count);
-
-    word = hashmap_get(map, &(struct word){ .name="Tom" });
-    printf("%s\n", word?"exists":"not exists");
-
-    printf("\n-- iterate over all words (hashmap_scan) --\n");
-    hashmap_scan(map, word_iter, NULL);
-
-    printf("\n-- iterate over all words (hashmap_iter) --\n");
-    size_t iter = 0;
-    void *item;
-    while (hashmap_iter(map, &iter, &item)) {
-        const struct word *word = item;
-        printf("%s (count=%d)\n", word->name, word->count);
+int main(int argc, char **argv) {
+    if (argc < 2) {
+        fprintf(stderr, "usage: perftest file\n");
+        return 1;
     }
 
-    hashmap_free(map);
+    // Read entire file into memory.
+    FILE* f = fopen(argv[1], "rb");
+    if (f == NULL) {
+        fprintf(stderr, "can't open file: %s\n", argv[1]);
+        return 1;
+    }
+    fseek(f, 0, SEEK_END);
+    long size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    char* contents = (char*)malloc(size + 1);
+    if (contents == NULL) {
+        exit_nomem();
+    }
+    size_t nread = fread(contents, 1, size, f);
+    if ((long)nread != size) {
+        fprintf(stderr, "read %ld bytes instead of %ld", (long)nread, size);
+        return 1;
+    }
+    fclose(f);
+    contents[size] = 0;
+
+    ht* counts = ht_create();
+    if (counts == NULL) {
+        exit_nomem();
+    }
+
+    for (char* p = contents; *p;) {
+        // Skip whitespace.
+        while (*p && *p <= ' ') {
+            p++;
+        }
+        char* word = p;
+
+        // Find end of word.
+        while (*p && *p > ' ') {
+            p++;
+        }
+        if (*p != 0) {
+            *p = 0;
+            p++;
+        }
+
+
+	// remove non alpha in the word
+	int j = 0;
+    for (int i = 0; word[i] != '\0'; i++) {
+        if (isalpha(word[i])) {
+            word[j++] = word[i];
+        }
+    }
+    word[j] = '\0';
+	// convert word to lower case.
+    for (int i = 0; i < strlen(word); i++) {
+        word[i] = tolower(word[i]);
+    }
+/*
+	while (*word){
+		printf("word is %c\n", word);
+		//*word = tolower(*word);
+		word++;
+	}	
+*/
+
+        // Look up word.
+        void* value = ht_get(counts, word);
+        if (value != NULL) {
+            // Already exists, increment int that value points to.
+            int* pcount = (int*)value;
+            (*pcount)++;
+            continue;
+        }
+
+        // Word not found, allocate space for new int and set to 1.
+        int* pcount = malloc(sizeof(int));
+        if (pcount == NULL) {
+            exit_nomem();
+        }
+        *pcount = 1;
+        if (ht_set(counts, word, pcount) == NULL) {
+            exit_nomem();
+        }
+    }
+    
+    hti it = ht_iterator(counts);
+		
+    char *minnum = argv[2];
+    char *maxnum = argv[3];
+
+   
+   	
+    printf( "min num is %s\n ", minnum );
+	
+    while (ht_next(&it)) {
+	    int numa = *(int*)it.value;
+	    if(numa < atoi( maxnum ) && numa > atoi( minnum ) )
+ //	  if(numa < 20 && numa > 10)
+		printf( "%s %d\n", it.key, numa );
+    }
+
+
+    
+
+    // Copy keys to array
+    /*
+    const char** keys = malloc(ht_length(counts) * sizeof(char*));
+    if (keys == NULL) {
+        exit_nomem();
+    }
+    hti it = ht_iterator(counts);
+    int i = 0;
+    while (ht_next(&it)) {
+        keys[i] = it.key;
+        i++;
+    }
+
+    ht* table = ht_create();
+    if (table == NULL) {
+        exit_nomem();
+    }
+
+    int value = 1; // dummy value
+    clock_t start = clock();
+    for (int i=0; i<ht_length(counts); i++) {
+        if (ht_set(table, keys[i], &value) == NULL) {
+            exit_nomem();
+        }
+    }
+    clock_t end = clock();
+    double elapsed_ms = (double)(end - start) / CLOCKS_PER_SEC * 1000;
+    printf("setting %lu keys: %.09fms\n", ht_length(counts), elapsed_ms);
 
     */
+    return 0;
 }
-
-// output:
-// -- get some users --
-// Jane age=47
-// Roger age=68
-// Dale age=44
-// not exists
-// 
-// -- iterate over all users (hashmap_scan) --
-// Dale (age=44)
-// Roger (age=68)
-// Jane (age=47)
-//
-// -- iterate over all users (hashmap_iter) --
-// Dale (age=44)
-// Roger (age=68)
-// Jane (age=47)
-
-
