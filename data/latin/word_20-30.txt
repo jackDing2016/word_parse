@@ -30,7 +30,6 @@ quoniam 28
 sumatur 24
 commode 26
 aequales 21
-substitutione 26
 eadem 23
 assignare 23
 reductio 25
@@ -38,8 +37,6 @@ parum 21
 reperitur 30
 huic 22
 locum 28
-secundum 27
-integrali 25
 deinde 24
 id 26
 gratia 29
@@ -47,7 +44,6 @@ priori 24
 quarum 28
 utique 23
 hi 24
-algebraica 29
 angulos 26
 quemadmodum 21
 reduci 25
@@ -55,19 +51,15 @@ potestates 25
 data 29
 reductionem 22
 harum 21
-algebraice 22
 duas 28
 es 30
 eodem 27
 adhuc 22
-numeri 24
 queat 26
 prodeat 27
 habeat 21
 numerum 24
-quantitatum 30
 valore 29
-exponens 28
 soholion 27
 fiet 29
 datae 22
@@ -87,7 +79,6 @@ quas 29
 minor 24
 dem 21
 opus 29
-negotium 22
 dat 29
 cui 22
 manifesto 26

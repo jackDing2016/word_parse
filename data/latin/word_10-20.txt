@@ -182,17 +182,12 @@ sumamus 16
 vocari 12
 redditur 18
 utrum 16
-dividatur 12
 particularia 18
 reliquis 11
 capite 16
 aequa 12
-transcendentium 15
-intelligitur 13
-numerator 11
 reddi 11
 siquidem 13
-convenit 17
 habetur 19
 undo 17
 editio 11
@@ -210,9 +205,6 @@ elicitur 12
 binarum 15
 notari 13
 primus 15
-separatio 11
-resolutio 15
-go 17
 ipsum 14
 datur 13
 sinusve 12
@@ -220,8 +212,6 @@ reddatur 12
 erunt 20
 facta 19
 parte 12
-solutionem 11
-exemplis 15
 exprimetur 13
 certis 11
 habeamus 13
