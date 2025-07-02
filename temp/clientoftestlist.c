@@ -18,8 +18,8 @@ int main() {
 
     iteratearraylist( al );
 
-    int sizeofal = size( al );
-    printf( "size of al is %d\n", sizeofal );
+    /* int sizeofal = size( al ); */
+    /* printf( "size of al is %d\n", sizeofal ); */
 
     char *aword = "good";
     bool iscon = iscontainelement( al, aword );

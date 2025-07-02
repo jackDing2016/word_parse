@@ -11,7 +11,7 @@ quo 161
 libri 61
 cuius 119
 licet 89
-posse 51
+osse 51
 genere 50
 ab 68
 sit 609
@@ -63,11 +63,9 @@ et 1069
 fuerit 119
 von 63
 nisi 67
-tang 114
 evanescat 70
 ergo 369
 ex 321
-iv 43
 omnes 56
 quare 100
 est 574
@@ -81,7 +79,6 @@ ita 301
 loco 48
 potest 122
 verum 51
-eritque 41
 veluti 42
 quibus 99
 semper 65

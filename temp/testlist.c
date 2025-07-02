@@ -10,6 +10,7 @@ struct arraylist {
 	int *nextpositiontoadd;
 //	int *availablesize;
 	int availablesize;
+	int size;
 };
 
 
@@ -27,7 +28,7 @@ struct arraylist *createarraylist() {
 	
 	al -> nextpositiontoadd = malloc( sizeof( int ) );
 	*( al -> nextpositiontoadd ) = 0;
-
+	al -> size = 0;
 	return al;	
 }
 
@@ -53,6 +54,7 @@ void addelement( struct arraylist *arraylist, char *value ) {
 		indexinside++;
 	}
 	*( arraylist -> nextpositiontoadd ) = *( arraylist -> nextpositiontoadd ) + 1;		
+	arraylist -> size = arraylist -> size + 1;		
 //	printf( "elements added successfully\n" );
 //	*( arraylist -> availablesize  ) = *( arraylist -> availablesize  ) - 1; 	
 //	*(&as) = as - 1;
@@ -66,8 +68,9 @@ void iteratearraylist( struct arraylist *arraylist ) {
 	}
 }
 
-int size( struct arraylist *arraylist ){
-	return *( arraylist -> nextpositiontoadd );		
+int getsize( struct arraylist *arraylist ){
+	/* return *( arraylist -> nextpositiontoadd );		 */
+    return arraylist -> size;
 }
 
 

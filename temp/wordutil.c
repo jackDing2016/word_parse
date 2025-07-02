@@ -1,43 +1,26 @@
 
+#include "testlist.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-
 #include <string.h>
 
-#include "testlist.h"
 
-void exit_nomem(void) {
-    fprintf(stderr, "out of memory\n");
-    exit(1);
-}
-
-void* found;
-
-int main(int argc, char **argv) {
-    if (argc < 2) {
-	fprintf(stderr, "usage: perftest file\n");
-	return 1;
-    }
-
+struct arraylist *readwordsfromfile( FILE *f ) {
     // Read entire file into memory.
-    FILE* f = fopen(argv[1], "rb");
+//    FILE* f = fopen(argv[1], "rb");
     if (f == NULL) {
-	fprintf(stderr, "can't open file: %s\n", argv[1]);
-	return 1;
+	fprintf(stderr, "can't open file\n" );
     }
     fseek(f, 0, SEEK_END);
     long size = ftell(f);
     fseek(f, 0, SEEK_SET);
     char* contents = (char*)malloc(size + 1);
     if (contents == NULL) {
-	exit_nomem();
     }
     size_t nread = fread(contents, 1, size, f);
     if ((long)nread != size) {
 	fprintf(stderr, "read %ld bytes instead of %ld", (long)nread, size);
-	return 1;
     }
     fclose(f);
     contents[size] = 0;
@@ -80,10 +63,8 @@ int main(int argc, char **argv) {
 	if ( iscontainelement( al, word ) == false ){
 	    addelement( al, word );
 	}
-
-
     }
     // iterate al
-    iteratearraylist( al );
-   return 0;
+    /* iteratearraylist( al ); */
+    return al;
 }
