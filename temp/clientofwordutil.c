@@ -8,6 +8,6 @@ int main() {
     int size = getsize( al );
     for ( int i = 0; i < size; i++ ) {    	
 	char *word = getelement( al, i );
-	printf( "a word in array list is %s\n", word );
+	printf( "index is %d, a word in array list is %s\n",i,  word );
     }
 }

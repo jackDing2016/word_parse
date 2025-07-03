@@ -1,0 +1,1 @@
+gcc /home/jack/develop/c/wordparse/temp/getunlearnwords.c /home/jack/develop/c/wordparse/temp/wordutil.c /home/jack/develop/c/wordparse/temp/testlist.c /home/jack/develop/c/wordparse/lib/stringutil.c -o /home/jack/develop/c/wordparse/bin/getunlearnwords.out

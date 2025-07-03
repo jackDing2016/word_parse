@@ -5,8 +5,10 @@
 #include "../lib/stringutil.h"
 //void setavailablesize( int *pavailablesize );
 
+#define MAXIMUMSIZE 100000
+
 struct arraylist {
-	char *data[100];
+	char *data[ MAXIMUMSIZE ];
 	int *nextpositiontoadd;
 //	int *availablesize;
 	int availablesize;

@@ -1,0 +1,1 @@
+gcc /home/jack/develop/c/wordparse/temp/clientoftestlist.c /home/jack/develop/c/wordparse/temp/testlist.c /home/jack/develop/c/wordparse/lib/stringutil.c -o /home/jack/develop/c/wordparse/bin/clientoftestlist.out
