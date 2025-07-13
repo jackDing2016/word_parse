@@ -48,7 +48,7 @@ angulos 26
 quemadmodum 21
 reduci 25
 potestates 25
-data 29
+data 29 give
 reductionem 22
 harum 21
 duas 28

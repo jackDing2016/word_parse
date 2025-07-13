@@ -1,21 +1,23 @@
 
-#include "testlist.h"
+#include "wordutil.h"
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include "testlist.h"
 
-struct arraylist *readwordsfromfile( FILE *f ) {
+struct arraylist *readwordsfromfile(FILE *f) {
     // Read entire file into memory.
-//    FILE* f = fopen(argv[1], "rb");
+    //    FILE* f = fopen(argv[1], "rb");
     if (f == NULL) {
-	fprintf(stderr, "can't open file\n" );
+	fprintf(stderr, "can't open file\n");
     }
     fseek(f, 0, SEEK_END);
     long size = ftell(f);
     fseek(f, 0, SEEK_SET);
-    char* contents = (char*)malloc(size + 1);
+    char *contents = (char *)malloc(size + 1);
     if (contents == NULL) {
     }
     size_t nread = fread(contents, 1, size, f);
@@ -25,17 +27,15 @@ struct arraylist *readwordsfromfile( FILE *f ) {
     fclose(f);
     contents[size] = 0;
 
-
     // create an arraylist to store words
     struct arraylist *al = createarraylist();
 
-
-    for (char* p = contents; *p;) {
+    for (char *p = contents; *p;) {
 	// Skip whitespace.
 	while (*p && *p <= ' ') {
 	    p++;
 	}
-	char* word = p;
+	char *word = p;
 
 	// Find end of word.
 	while (*p && *p > ' ') {
@@ -45,7 +45,6 @@ struct arraylist *readwordsfromfile( FILE *f ) {
 	    *p = 0;
 	    p++;
 	}
-
 
 	// remove non alpha in the word
 	int j = 0;
@@ -60,11 +59,40 @@ struct arraylist *readwordsfromfile( FILE *f ) {
 	    word[i] = tolower(word[i]);
 	}
 	// if not containt add the word
-	if ( iscontainelement( al, word ) == false ){
-	    addelement( al, word );
+	if (iscontainelement(al, word) == false) {
+	    addelement(al, word);
 	}
     }
     // iterate al
     /* iteratearraylist( al ); */
     return al;
 }
+void getdictionaryform(char *word) {
+    int len = strlen(word);
+    /* ed past tense form of a verb */
+    /* s plural form of a noun */
+    /* ly an adverb which derived from an adjective */
+    char lastalphabet = word[len - 1];
+    char lastsecondalphabet = word[len - 2];
+    if (lastalphabet == 'd') {
+	if (lastsecondalphabet == 'e') {
+	    // cut it
+	    word[len - 1] = '\0';
+	    word[len - 2] = '\0';
+	}
+    } else if (lastalphabet == 'y') {
+	if (lastsecondalphabet == 'l') {
+	    // cut it
+	    word[len - 1] = '\0';
+	    word[len - 2] = '\0';
+	}
+    } else if (lastalphabet == 's') {
+	if (lastsecondalphabet == 'e') {
+	    // cut it
+	}
+    }
+    /* printf("len is %d\n", a); */
+    /* word[a - 1] = '\0'; */
+    return word;
+}
+

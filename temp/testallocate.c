@@ -13,7 +13,7 @@ int main(){
 	int *p;
 
 	p = calloc( 100, sizeof(int) );
-
+	
 	printf("%d", p);
 
 

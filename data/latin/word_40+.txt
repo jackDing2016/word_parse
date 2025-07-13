@@ -26,7 +26,7 @@ nostra 53
 at 104
 non 218
 se 170
-de 224
+de 224	about
 tantum 84
 debet 58
 si 634
@@ -59,16 +59,16 @@ pars 133
 omnia 78
 vero 135
 me 41
-et 1069
+et 1069 and
 fuerit 119
 von 63
 nisi 67
 evanescat 70
 ergo 369
-ex 321
+ex 321 from
 omnes 56
 quare 100
-est 574
+est 574 are
 esse 109
 atque 89
 huius 75
@@ -82,14 +82,14 @@ verum 51
 veluti 42
 quibus 99
 semper 65
-habebitur 41
+habebitur 
 unde 351
 eius 101
 quod 180
 neque 65
 den 43
 sed 50
-cum 377
+cum 377 since
 vel 226
 magis 42
 cos 667
@@ -98,7 +98,7 @@ pro 355
 quia 98
 der 109
 hac 92
-igitur 107
+igitur 107 therefore
 sint 58
 ponatur 89
 quam 101

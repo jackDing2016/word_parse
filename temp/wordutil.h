@@ -1,4 +1,6 @@
 
 #include "testlist.h"
 
-extern struct arraylist *readwordsfromfile( FILE *f );
+extern struct arraylist *readwordsfromfile(FILE *f);
+
+extern void getdictionaryform(char *word);
