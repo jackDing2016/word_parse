@@ -93,6 +93,6 @@ void getdictionaryform(char *word) {
     }
     /* printf("len is %d\n", a); */
     /* word[a - 1] = '\0'; */
-    return word;
+    /* return word; */
 }
 
