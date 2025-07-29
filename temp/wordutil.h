@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "testlist.h"
-
-extern struct arraylist *readwordsfromfile(FILE *f);
+/* #include "../lib/datastructs-c/arraylist.h" */
+struct arraylist *readwordsfromfile(FILE *f);
 
 extern void getdictionaryform(char *word);
