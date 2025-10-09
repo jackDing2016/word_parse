@@ -2,10 +2,12 @@
 #include "wordutil_v_2.h"
 
 #include <ctype.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include "../lib/stringutil.h"
 /* #include "../lib/datastructs-c/arraylist.h" */
 arraylist *readwordsfromfile(FILE *f) {
     // Read entire file into memory.
@@ -74,7 +76,7 @@ void getdictionaryform(char *word) {
     /* ly an adverb which derived from an adjective */
     char lastalphabet = word[len - 1];
     char lastsecondalphabet = word[len - 2];
-    
+
     if (lastalphabet == 'd') {
 	if (lastsecondalphabet == 'e') {
 	    // cut it
@@ -95,11 +97,17 @@ void getdictionaryform(char *word) {
 
     /* gerund which is end with ing */
 
-    char *suffix_gerund="ing";
-
-
-    /* printf("len is %d\n", a); */
-    /* word[a - 1] = '\0'; */
-    /* return word; */
+    if (len >= 5) {
+	char *gerund_suffix = "ing";
+	char *p;
+	p = word;
+	p = p + len - 3;
+	bool res = isequal(gerund_suffix, p);
+	if (res == true) {
+	    // cut it
+	    word[len - 1] = '\0';
+	    word[len - 2] = '\0';
+	    word[len - 3] = '\0';
+	}
+    }
 }
-

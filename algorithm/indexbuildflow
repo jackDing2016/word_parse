@@ -1,0 +1,5 @@
+build index
+save index to data structure (list or map)
+save data structure to file
+load index from file
+query word by index

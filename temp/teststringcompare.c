@@ -6,7 +6,7 @@
 
 #include "../lib/stringutil.h"
 int main() {
-    char *gerund_suffix = "abc";
+    char *gerund_suffix = "ing";
     char *word = calloc(50, sizeof(char));
     word = "hunting";
     char *p;

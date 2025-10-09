@@ -1,0 +1,1 @@
+gcc indexservice.c wordindex.c /home/jack/develop/c/lib/string.c /home/jack/develop/c/lib/datastructs-c/arraylist.c indexservicetest.c /home/jack/develop/c/lib/stringutil.c /home/jack/develop/c/lib/datastructs-c/hashtable.c
