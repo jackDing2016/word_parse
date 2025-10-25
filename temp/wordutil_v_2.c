@@ -69,6 +69,12 @@ arraylist *readwordsfromfile(FILE *f) {
     /* iteratearraylist( al ); */
     return al;
 }
+arraylist *getknownwordlist() {
+    FILE *fknownwords = fopen(
+	"/home/jack/develop/c/word_parse/data/english/knownwords.txt", "rb");
+    struct arraylist *alknown = readwordsfromfile(fknownwords);
+    return alknown;
+}
 void getdictionaryform(char *word) {
     int len = strlen(word);
     /* ed past tense form of a verb */
